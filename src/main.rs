@@ -8,13 +8,10 @@ const TEMPLATE_DIR: &str = "TOOLBOX_TEMPLATE_DIR";
 
 fn main() {
     let app = new_app();
-    // let a = "~/.template".to_string();
-
     let matches = app.get_matches();
 
     if let Some(args) = matches.subcommand_matches(SATYSFI) {
         if let Some(target_dir_str) = args.value_of(SATY_DIR) {
-            dbg!();
             let template_dir_str =
                 env::var(TEMPLATE_DIR).expect(&format!("{} is not set", TEMPLATE_DIR));
             let template_dir_str = format!("{}/satysfi/", template_dir_str);
@@ -30,7 +27,6 @@ fn main() {
                 exit(1);
             }
 
-            println!("{:?}", target_dir);
             match fs::create_dir(target_dir) {
                 Ok(_) => (),
                 Err(e) => {
